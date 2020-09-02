@@ -1,12 +1,11 @@
 const { Router } = require("express");
-const Editor = require("../models/Editor");
 const router = Router();
 
 router.get("/", async (req, res) => {
   try {
     res.json("<h1>hello</h1>");
   } catch (error) {
-    res.status(500).json({ message: "Что не так с get запросом" });
+    res.status(500).json({ message: "Что-то не так с get запросом" });
   }
 });
 
@@ -16,7 +15,7 @@ router.post("/", async (req, res) => {
 
     res.status(201).json({ data });
   } catch (error) {
-    res.status(500).json({ message: "Что не так с post запросом" });
+    res.status(500).json({ message: "Что-то не так с post запросом" });
   }
 });
 

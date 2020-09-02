@@ -4,7 +4,7 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const editor = await Editor.find({ _id: req.params.id });
+    const editor = await Editor.find();
     res.json(editor);
   } catch (error) {
     res.status(500).json({ message: "Что не так с get запросом" });
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const editor = await Editor.find({ _id: req.params.id });
+    const editor = await Editor.findOne({ _id: req.params.id });
     res.json(editor);
   } catch (error) {
     res.status(500).json({ message: "Что не так с get запросом" });
@@ -29,9 +29,9 @@ router.post("/", async (req, res) => {
       date: new Date(),
     });
 
-    await editor.save();
+    await editor.save((e) => console.log("[]", e));
 
-    res.status(201).json({ data });
+    res.status(201).json({ editor });
   } catch (error) {
     res.status(500).json({ message: "Что не так с post запросом" });
   }

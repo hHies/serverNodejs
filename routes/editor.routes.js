@@ -4,7 +4,16 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const editor = await Editor.find();
+    const editor = await Editor.find({ _id: req.params.id });
+    res.json(editor);
+  } catch (error) {
+    res.status(500).json({ message: "Что не так с get запросом" });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const editor = await Editor.find({ _id: req.params.id });
     res.json(editor);
   } catch (error) {
     res.status(500).json({ message: "Что не так с get запросом" });
